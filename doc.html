@@ -6,14 +6,25 @@
   <meta name="description" content="The Powerful Express">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Express Plus</title>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css"
+    integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous" />
 
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
   <link rel="stylesheet" href="./css/global.css">
   <link rel="stylesheet" href="./css/doc.css">
   <link rel="icon" type="image/png" sizes="32x32" href="/icon/icon.png">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-STT9EJ7XGT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-STT9EJ7XGT');
+  </script>
 </head>
 
 <body>
@@ -23,8 +34,10 @@
     <ul class="menu">
       <div class="menu__item toggle"><span></span></div>
       <li class="menu__item"><a href="index.html" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
-      <li class="menu__item"><a target="_blank" href="https://github.com/ExpressPlus/ExpressPlus" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
-      <li class="menu__item"><a target="_blank" href="https://www.npmjs.com/package/@ulvimemmeedov/expressjsplus" class="link link--dark"><i class="fab fa-npm"></i> npm</a></li>
+      <li class="menu__item"><a target="_blank" href="https://github.com/ExpressPlus/ExpressPlus"
+          class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+      <li class="menu__item"><a target="_blank" href="https://www.npmjs.com/package/@ulvimemmeedov/expressjsplus"
+          class="link link--dark"><i class="fab fa-npm"></i> npm</a></li>
     </ul>
   </nav>
   <div class="wrapper">
@@ -34,6 +47,7 @@
         <li class="js-btn">Routing</li>
         <li class="js-btn">Middleware</li>
         <li class="js-btn">Template engines</li>
+        <li class="js-btn">Global</li>
       </ul>
     </aside>
     <article class="doc__content">
@@ -153,18 +167,18 @@
         <h4>Example</h4>
         <div id="routing3">
           const { Router,Service } = require('@ulvimemmeedov/expressjsplus');
-         
-          lets myLogger = (request, response, next) => {
-            console.log('LOGGED');
-            next();
-          }
-          
-          Service.use(myLogger);
-          
-          Router.get('/',  (request, response) => {
 
-            res.json('Hello World!');
-          
+          lets myLogger = (request, response, next) => {
+          console.log('LOGGED');
+          next();
+          }
+
+          Service.use(myLogger);
+
+          Router.get('/', (request, response) => {
+
+          res.json('Hello World!');
+
           });
 
           Service.use(Router);
@@ -172,13 +186,16 @@
           Service.listen(3000);
         </div>
         <p>You can read the rest of the middleware in the<a style="color: blue;"
-          href="https://expressjs.com/en/guide/writing-middleware.html"> Express docs</a></p>
-   
+            href="https://expressjs.com/en/guide/writing-middleware.html"> Express docs</a></p>
+
       </section>
       <section class="js-section">
         <h3 class="section__title">Template engines</h3>
-        <p>A template engine enables you to use static template files in your application. At runtime, the template engine replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. This approach makes it easier to design an HTML page.</p>
-        <p>Some popular template engines that work with Express are Pug, Mustache, and EJS, also Express+ is supported.</p>
+        <p>A template engine enables you to use static template files in your application. At runtime, the template
+          engine replaces variables in a template file with actual values, and transforms the template into an HTML file
+          sent to the client. This approach makes it easier to design an HTML page.</p>
+        <p>Some popular template engines that work with Express are Pug, Mustache, and EJS, also Express+ is supported.
+        </p>
         <h4>Example</h4>
         <div class="code__block code__block--notabs">
           <pre class="code code--block">
@@ -189,13 +206,13 @@
         </div>
         <div id="routing4">
           const { Service, Router } = require('@ulvimemmeedov/expressjsplus');
-         
+
           Service.set('view engine', 'pug')
-          
+
           Service.use(myLogger);
-          
+
           Router.get('/', function (req, res) {
-            res.render('index', { title: 'Hey', message: 'Hello there!' })
+          res.render('index', { title: 'Hey', message: 'Hello there!' })
           })
 
           Service.use(Router);
@@ -203,11 +220,10 @@
           Service.listen(3000);
         </div>
         <p>You can read the rest of the Template engines in the<a style="color: blue;"
-          href="https://expressjs.com/en/guide/using-template-engines.html"> Express docs</a></p>
+            href="https://expressjs.com/en/guide/using-template-engines.html"> Express docs</a></p>
       </section>
-<!-- 
       <section class="js-section">
-        <h3 class="section__title">Issues</h3>
+        <h3 class="section__title">Global</h3>
         <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At
           eam movet verear, in sea brute patrioque disputando, usu nonumes torquatos an. Ex his quaerendum intellegebat,
           ut vel homero accusam. Eum at debet tibique, in vocibus temporibus adversarium sed. Porro verear eu vix, ne
@@ -217,6 +233,7 @@
           te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates
           suavitate vituperatoribus.</p>
       </section>
+      <!-- 
       <section class="js-section">
         <h3 class="section__title">Issues</h3>
         <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At

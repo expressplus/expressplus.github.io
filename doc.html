@@ -47,6 +47,8 @@
         <a target="_blank" href="https://www.npmjs.com/package/@ulvimemmeedov/expressjsplus" class="link link--dark"><i
             class="fab fa-npm"></i> npm</a>
       </li>
+      <li class="menu__item"><a target="_blank" href="./try.html"
+        class="link link--dark">Try Online</a></li>
     </ul>
   </nav>
   <div class="wrapper">
@@ -59,6 +61,7 @@
         <li class="js-btn">Global</li>
         <li class="js-btn">Error Handler</li>
         <li class="js-btn">Async Handler</li>
+        <li class="js-btn">Controller</li>
 
       </ul>
     </aside>
@@ -477,7 +480,6 @@
         </p>
 
       </section>
-
       </section>
       <section class="js-section">
         <h3 class="section__title">Async Handler</h3>
@@ -511,22 +513,70 @@
           }))
 
           Service.use(Router).listen(3000)
-
-
         </code></pre>
       </section>
-      <!-- 
       <section class="js-section">
-        <h3 class="section__title">Issues</h3>
-        <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At
-          eam movet verear, in sea brute patrioque disputando, usu nonumes torquatos an. Ex his quaerendum intellegebat,
-          ut vel homero accusam. Eum at debet tibique, in vocibus temporibus adversarium sed. Porro verear eu vix, ne
-          usu tation vituperata.</p>
-        <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas
-          concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius
-          te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates
-          suavitate vituperatoribus.</p>
+        <h3 class="section__title">Controller</h3>
+        <h4 class="section__title">MongoController</h4>
+        <p>MongoController is a base controller class that contains the find, findOne, create, findOneAndUpdate, and findOneAndDelete methods. Must be inherited from a class to use.</p>
+          <h5>create method example</h5>
+          <pre><code class="language-javascript">
+            import {Router, Service, Mongoose, MongoController, JsonParser} from '@ulvimemmeedov/expressjsplus';
+
+            export const conn = async () =>{
+            
+                try {
+                    await Mongoose.connect('mongooseURI', { useNewUrlParser: true, useFindAndModify: false,
+                        useCreateIndex: true,
+                        useUnifiedTopology:true });
+            
+                    console.log('db connection success')
+                } catch (error) {
+            
+                    console.log(error);
+            
+                }
+            
+            }
+            conn();
+            const SchemaModel = new Mongoose.Schema({
+            
+                title:String,
+                
+                description:String
+            
+            })
+            
+            const schemaModel = Mongoose.model('Schema',SchemaModel)
+            
+            class Controller extends MongoController {
+            
+                constructor(model) {
+                    super(model)
+                }
+            
+            }
+            const ctrl = new Controller(schemaModel);
+            
+            Service.use(JsonParser()).get('/',ctrl.Create).listen(3000,()=>console.log('app running'))              
+            </code></pre>
+            <h5>response</h5>
+            <pre><code class="language-json">
+
+              {
+                "success": true,
+                "object": {
+                    "_id": "6106ce43efc2ec4c0cd696db",
+                    "title": "Express+",
+                    "description": "All you need tool in one web framework for NodeJs."
+                }
+            }
+
+            </code></pre>
+
+        <p>We enter the model as a parameter in the constructor of our class, then add our model to it as super, and in the next step, we create an instance of the inherited class and send our model as a parameter to it.</p>
       </section>
+       <!-- 
       <section class="js-section">
         <h3 class="section__title">Issues</h3>
         <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At

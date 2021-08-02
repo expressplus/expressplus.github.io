@@ -47,8 +47,7 @@
         <a target="_blank" href="https://www.npmjs.com/package/@ulvimemmeedov/expressjsplus" class="link link--dark"><i
             class="fab fa-npm"></i> npm</a>
       </li>
-      <li class="menu__item"><a target="_blank" href="./try.html"
-        class="link link--dark">Try Online</a></li>
+      <li class="menu__item"><a target="_blank" href="./try.html" class="link link--dark">Try Online</a></li>
     </ul>
   </nav>
   <div class="wrapper">
@@ -518,9 +517,10 @@
       <section class="js-section">
         <h3 class="section__title">Controller</h3>
         <h4 class="section__title">MongoController</h4>
-        <p>MongoController is a base controller class that contains the find, findOne, create, findOneAndUpdate, and findOneAndDelete methods. Must be inherited from a class to use.</p>
-          <h5>create method example</h5>
-          <pre><code class="language-javascript">
+        <p>MongoController is a base controller class that contains the find, findOne, create, findOneAndUpdate, and
+          findOneAndDelete methods. Must be inherited from a class to use.</p>
+        <h5>create method example</h5>
+        <pre><code class="language-javascript">
             import {Router, Service, Mongoose, MongoController, JsonParser} from '@ulvimemmeedov/expressjsplus';
 
             export const conn = async () =>{
@@ -558,10 +558,10 @@
             }
             const ctrl = new Controller(schemaModel);
             
-            Service.use(JsonParser()).get('/',ctrl.Create).listen(3000,()=>console.log('app running'))              
+            Service.use(JsonParser()).post('/',ctrl.Create).listen(3000,()=>console.log('app running'))              
             </code></pre>
-            <h5>response</h5>
-            <pre><code class="language-json">
+        <h5>response</h5>
+        <pre><code class="language-json">
 
               {
                 "success": true,
@@ -574,9 +574,54 @@
 
             </code></pre>
 
-        <p>We enter the model as a parameter in the constructor of our class, then add our model to it as super, and in the next step, we create an instance of the inherited class and send our model as a parameter to it.</p>
+        <p>We enter the model as a parameter in the constructor of our class, then add our model to it as super, and in
+          the next step, we create an instance of the inherited class and send our model as a parameter to it.
+        </p>
+        <h5>Update method example</h5>  
+       <pre><code class="language-javascript">
+        class Controller extends MongoController {
+        
+            constructor(model) {
+                super(model)
+            }
+        
+        }
+        const ctrl = new Controller(schemaModel);
+        
+        Service.use(JsonParser()).put('/',ctrl.Update).listen(3000,()=>console.log('app running'))
+      
+      </code></pre>
+      <p>*To use the update method, the id must be sent in the request body.</p>
+      <h5>Find method example</h5>  
+      <pre><code class="language-javascript">
+       class Controller extends MongoController {
+        
+          constructor(model) {
+              super(model)
+          }
+      
+       }
+       const ctrl = new Controller(schemaModel);
+      
+       Service.use(JsonParser()).get('/',ctrl.Find).listen(3000,()=>console.log('app running'))
+      </code></pre>
+
+      <h5>FindOne method example</h5>  
+      <pre><code class="language-javascript">
+       class Controller extends MongoController {
+        
+          constructor(model) {
+              super(model)
+          }
+      
+       }
+       const ctrl = new Controller(schemaModel);
+      
+       Service.use(JsonParser()).get('/',ctrl.FindOne).listen(3000,()=>console.log('app running'))
+      </code></pre>
+      <p>*To use the FindOne method, the id must be sent in the request body.</p>
       </section>
-       <!-- 
+      <!-- 
       <section class="js-section">
         <h3 class="section__title">Issues</h3>
         <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At

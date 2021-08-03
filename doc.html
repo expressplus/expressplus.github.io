@@ -28,6 +28,15 @@
 
     gtag("config", "G-STT9EJ7XGT");
   </script>
+  <style>
+    .img {
+      max-width: 100%;
+    }
+
+    .thanks {
+      font-style: italic;
+    }
+  </style>
 </head>
 
 <body>
@@ -61,7 +70,7 @@
         <li class="js-btn">Error Handler</li>
         <li class="js-btn">Async Handler</li>
         <li class="js-btn">Controller</li>
-
+        <li class="js-btn">Toolbar</li>
       </ul>
     </aside>
     <article class="doc__content">
@@ -577,8 +586,8 @@
         <p>We enter the model as a parameter in the constructor of our class, then add our model to it as super, and in
           the next step, we create an instance of the inherited class and send our model as a parameter to it.
         </p>
-        <h5>Update method example</h5>  
-       <pre><code class="language-javascript">
+        <h5>Update method example</h5>
+        <pre><code class="language-javascript">
         class Controller extends MongoController {
         
             constructor(model) {
@@ -591,9 +600,9 @@
         Service.use(JsonParser()).put('/',ctrl.Update).listen(3000,()=>console.log('app running'))
       
       </code></pre>
-      <p>*To use the update method, the id must be sent in the request body.</p>
-      <h5>Find method example</h5>  
-      <pre><code class="language-javascript">
+        <p>*To use the update method, the id must be sent in the request body.</p>
+        <h5>Find method example</h5>
+        <pre><code class="language-javascript">
        class Controller extends MongoController {
         
           constructor(model) {
@@ -606,8 +615,8 @@
        Service.use(JsonParser()).get('/',ctrl.Find).listen(3000,()=>console.log('app running'))
       </code></pre>
 
-      <h5>FindOne method example</h5>  
-      <pre><code class="language-javascript">
+        <h5>FindOne method example</h5>
+        <pre><code class="language-javascript">
        class Controller extends MongoController {
         
           constructor(model) {
@@ -619,21 +628,73 @@
       
        Service.use(JsonParser()).get('/',ctrl.FindOne).listen(3000,()=>console.log('app running'))
       </code></pre>
-      <p>*To use the FindOne method, the id must be sent in the request body.</p>
+        <p>*To use the FindOne method, the id must be sent in the request body.</p>
       </section>
-      <!-- 
       <section class="js-section">
-        <h3 class="section__title">Issues</h3>
-        <p>Lorem ipsum dolor sit amet, scripta tibique indoctum sit ei, mel inani aeterno ad. Facer oratio ex per. At
-          eam movet verear, in sea brute patrioque disputando, usu nonumes torquatos an. Ex his quaerendum intellegebat,
-          ut vel homero accusam. Eum at debet tibique, in vocibus temporibus adversarium sed. Porro verear eu vix, ne
-          usu tation vituperata.</p>
-        <p>Malis percipitur an pro. Pro aperiam persequeris at, at sonet sensibus mei, id mea postulant definiebas
-          concludaturque. Id qui malis abhorreant, mazim melius quo et. At eam altera dolorum, case dicant lobortis ius
-          te, ad vel affert oportere reprehendunt. Quo no verterem deseruisse, mea brute postea te, ne per tacimates
-          suavitate vituperatoribus.</p>
+        <h3 class="section__title">Toolbar</h3>
+
+        <h4 class="thanks"> <Strong> /*
+            We thank Liam Svanåsbakken Crouch for his contribution.*/ </Strong><br>
+        </h4>
+
+        <h4>Screenshots #1</h4>
+        <img class="img" src="./img/1.png" alt="1">
+
+        <p>Toolbar is a monitoring panel for your APIs, this is completely embedded in express+ You can see your request
+          object and response object with the toolbar You can see the data sent with params and query in the variable
+          section You can see the request and response header in the header section You can monitor your cookies and
+          everything sent in the header.</p>
+        <h4>Screenshots #2</h4>
+        <img class="img" src="./img/4.png" alt="4">
+        <h4>User Guide</h4>
+        <pre><code class="language-javascript">
+          import { Service,Router,ExpressToolBar,dotenv } from '@ulvimemmeedov/expressjsplus';
+
+          dotenv.config();
+          
+          // Start Toolbar and send parametr Service 
+          ExpressToolBar.default.Start(Service);
+          
+          Router.get('/',(req,res)=>{
+          
+              res.json('Hello Express+') 
+          
+          })
+          
+          Service.use(Router).listen(3000)          
+         </code></pre>
+        <pre><code class="language-terminal">
+          // terminal log 
+
+          DebugToolbar: Attached to Express + instance
+
+          // running at http://localhost:3000/_debug/
+         </code></pre>
+        <h1>Screenshots #3</h1>
+        <br>
+        <img src="./img/2.png" alt="2" class="img">
+
+        <p>You can get your APIs in json format in /_debug/api extension with start and end times</p>
+        <h1>Screenshots #4</h1>
+        <br>
+        <img class="img" src="./img/3.png" alt="3">
+        <p>You can access extensive information in json format by typing the uuid of the report at the end of the
+          /_debug/api/ extension
+          <br>
+          example : localhost:3000/_debug/api/84c828e6-3bca-47e8-8762-3688e0be77ea
+        </p>
+        <p>
+          from the .env file
+          If you add DEBUGBAR section and EXPRESSPLUS section and set true, you can get notification when the
+          application is opened.
+        </p>
+        <h4>example</h4>
+        <pre><code class="language-terminal">
+          // .env
+          EXPRESSPLUS = true
+          DEBUGBAR = true
+         </code></pre>
       </section>
-     -->
     </article>
   </div>
 

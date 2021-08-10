@@ -629,6 +629,45 @@
        Service.use(JsonParser()).get('/',ctrl.FindOne).listen(3000,()=>console.log('app running'))
       </code></pre>
         <p>*To use the FindOne method, the id must be sent in the request body.</p>
+      
+      <h4>Mysql Controller</h4>
+      <p>MysqlController is a base controller class that contains the Query method. Must be inherited from a class to use.
+
+      </p>
+      <pre><code class="language-javascript">
+        const {Service,Router,MysqlController,Mysql,AsyncHandler} = require('./src/index');
+
+
+        const con = Mysql.createConnection({
+            host: "localhost",
+            user: "yourusername",
+            password: "yourpassword",
+            database: "yourdb"
+          });
+          
+        class DatabaseController extends MysqlController {
+        
+            constructor(con){
+                super(con)
+            }
+        
+        }
+        
+        const ctrl = new DatabaseController(con);
+        
+        
+        Router.route('/').get(AsyncHandler(async (req,res)=> {
+        
+            const data = await ctrl.Query('SELECT * FROM test')
+        
+            res.json({data:data})
+        
+        }))
+        
+        Service.use(Router).listen(3000)
+        
+       </code></pre>
+      
       </section>
       <section class="js-section">
         <h3 class="section__title">Debug Panel</h3>

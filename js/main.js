@@ -15,7 +15,7 @@ if (document.getElementsByClassName('demo').length > 0) {
     var txt = `
     import { Service , Router }  from '@ulvimemmeedov/expressjsplus';
 
-    Router.get("/",(request,response) => response.json("Hello Express.Js Plus");
+    Router.get("/",(request,response) => response.json("Hello Express.Js Plus"));
 
     Service.use(Router).listen(port,calback);
   
